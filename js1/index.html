@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+
+        <script src="https://kit.fontawesome.com/5279721467.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <div class="container container-sm mt-4">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" target="_blank" href="words.html">Text Mining</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+            <header class="mt-4">
+                <h1 class="display-4 text-center">
+                    <i class="fas fa-book-open text-primary"></i>
+                    My<span class="text-primary">Book</span>List
+                </h1>
+            </header>
+
+
+            <form id="book-form" autocomplete="off">
+                <div class="form-group mb-2">
+                    <div class="form-group mb-2">
+                        <label for="author">Autor:</label>
+                        <input type="text" id="author" class="form-control" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="title">Titel:</label>
+                        <input type="text" id="title" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Jahr:</label>
+                        <input
+                            type="text"
+                            id="year"
+                            class="form-control error-input"/>
+                        <div class="error-messages" id="year-error"></div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="isbn">ISBN:</label>
+                        <input
+                            type="text"
+                            id="isbn"
+                            class="form-control error-input"
+                            placeholder="000-0-000-00000-0"/>
+                        <div class="error-messages"></div>
+                    </div>
+                </div>
+
+                <div class="btns-form home-btns">
+                    <input type="submit" value="Insert" class="btn btn-primary btn-block" id="insert"/>
+                    <input type="submit" value="Update" class="btn btn-primary btn-block" id="update"/>
+                    <input type="submit" value="Remove" class="btn btn-primary btn-block" id="remove"/>
+                    <input type="submit" value="Clear" class="btn btn-primary btn-block" id="clear"/>
+                </div>
+            </form>
+
+            <hr/>
+
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="text" id="search-input" placeholder="Search" autocomplete="off"/>
+                <button class="btn btn-secondary my-2 my-sm-0" id="search" type="submit">Search</button>
+            </form>
+
+            <div id="booklist-container"></div>
+        </div>
+
+        <script type="module" src="./js/script.js"></script>
+    </body>
+</html>

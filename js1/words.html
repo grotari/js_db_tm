@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Text Mining</title>
+        <script src="./libs/jquery-3.6.1.min.js"></script>
+        
+        <script src="https://kit.fontawesome.com/5279721467.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <div class="container container-sm mt-4">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Text Mining</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="form-group">
+                <label for="text-area" class="form-label mt-4">Text hinzufügen</label>
+                <textarea class="form-control" id="text-area" rows="5"></textarea>
+            </div>
+
+            <div class="d-flex mt-3 mb-5 text-to-research">
+                <input class="form-control form-control-sm" type="file" id="formFile" accept=".txt"/>
+                <input type="submit" value="Upload File" class="btn btn-primary btn-sm" id="text-load-btn"/>
+
+                <button type="button" class="btn btn-primary btn-sm go-research" data-bs-toggle="modal" data-bs-target="#modal"
+                    id="btn-for-modal">Research</button>
+            </div>
+
+            <hr />
+
+            <div class="form-group">
+                <label for="results" class="form-label mt-2">Ergebnisse</label>
+
+                <div class="card card-body border-info mb-3">
+                    <p class="card-text" id="results"></p>
+                </div>
+            </div>
+
+            <div class="modal-fade" id="modal-fade" aria-labelledby="modal-label" aria-hidden="true">
+                <div class="modal-wrapper" id="modal-wrapper" role="document" >
+                    <div class="modal-content" id="modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-label">Wählen Sie die Parameter!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <fieldset class="form-group" id="parameters-modal">
+                                <legend class="mt-4"></legend>
+            
+                                <div class="form-check">
+                                    <input name="tokens" class="form-check-input" type="checkbox" id="tokens" checked=""/>
+                                    <label class="form-check-label" for="tokens">Tokens</label>
+                                </div>
+            
+                                <div class="form-check">
+                                    <input name="types" class="form-check-input" type="checkbox" id="types"/>
+                                    <label class="form-check-label" for="types">Types</label>
+                                </div>
+            
+                                <label for="mfw" class="form-label mt-2">Die häufigsten Wörter</label>
+                                <input name="mfwRange" type="range" class="form-range" min="0" max="100" step="5" id="mfw" value="30" disabled=""/>
+                                <label for="stopwords" class="form-label">Stopwords</label>
+                                <input name="sstopWordsRange" type="range" class="form-range" min="0" max="100" step="5" id="stopwords" value="10" disabled=""/>
+                            </fieldset>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-button">Close</button>
+                            <button type="button"class="btn btn-primary" id="submit-parameters">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="./js/wordsAsynchron.js"></script>
+    </body>
+</html>

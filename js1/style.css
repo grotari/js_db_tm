@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.container,
+.modal-content {
+    width: 900px;
+    max-width: 1000px;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    padding-left: 5px;
+    padding-bottom: 3px;
+}
+
+.error-messages {
+    font-size: 10px;
+    visibility: hidden;
+    padding-left: 5px;
+    height: 15px;
+}
+
+#year-error {
+    margin-bottom: 1px;
+}
+
+#results {
+    height: 200px;
+    font-size: 16px;
+}
+
+.text-to-research,
+#file-upload {
+    width: fit-content;
+    display: inline-block;
+    margin: auto;
+    justify-content: space-between;
+}
+.go-research,
+#ocr-submit,
+#text-load-btn {
+    margin-left: 10px;
+}
+
+.home-btns,
+#instruction-ocr {
+    margin: auto;
+    text-align: center;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 200;
+    padding: 60px;
+    overflow-y: auto;
+    display: none;
+}
+
+#close-button {
+    margin-right: 10px;
+}
