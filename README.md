@@ -1,81 +1,80 @@
 # js_db_tm
 
-Die Anwendung besteht aus zwei Seiten.
+The application is a combination of data creation and text mining tasks:
+1. __Home__ is designed to create and modify a database of books from scratch or using a .json list of books.
+2. __Text Mining__ is an asynchronous application for text analyses.
 
-1. Die erste Seite ("Home") hilft beim Erstellen und Ändern einer Datenbank mit Büchern aus einer .json-Datei oder von Grund auf.
-2. Die zweite Seite ("Text Mining") ist eine asynchronishce Anwednung, die bei der Analyse eines Textes mithilft.
+### HOME app
 
+#### App components
+* index.html
+* script.js
+* script.php
+* style.css
+* Two classes: 
+	* UI.js
+	* DataBase.js
+* booklist.json (a list of books for testing)
 
-HOME-Seite
+#### Properties
 
-Beschreibung:
+* A .json file with the list of books is uploaded via AJAX. When creating and manipulating the database, the data is stored in LocalStorage. Optionally, the database can be sent to the server.
 
-Eine json-Datei wird über AJAX hochgeladen. Wenn der Erstellungsvorgang abgeschlossen ist, kann die Datenbank ausgewählt werden, um sie an den Server zu senden, andernfalls wird sie automatisch im LocalStorage gespeichert. 
+* __INSERT__ button (checks are performed):
+	1. All input fields should be filled in:
+		* If at least one of the input fields is not filled in, an error message will be displayed asking to fill in all fields. The message disappears after 5 seconds.
 
-Dokumente: 
+	2. Year and ISBN are compliant regularities:
+		* Error messages are displayed and further checks are not performed regardless:
+			* whether one or both entries are incorrect, 
+			* if only one of the two incorrect entries has been corrected, and
+			* if the same steps are performed repeatedly.
 
-index.html, script.js, script.php, style.css, zwei Klassen: UI.js und DataBase.js, booklist.json (eine Liste von Büchern zum Testen)
+	3. No duplicates:
+		* If the book is already inserted, a message saying _"The book is already in the library"_ will be displayed and will disappear after 5 seconds, otherwise the book will be saved.
 
+* __CLEAR__ button:
+	* The entries in the input fields are deleted. When a book has been successfully inserted, the input values are automatically deleted.
+	
+* Double click on any field of the table:
+	* Double-click on the selected book to display it in the input fields and then to update or delete it.
 
-Eigenschaften:
+* Deleting a book from the database:
+	* Any book is removed with the __X__ or __REMOVE__ button. If the book has been successfully removed, the following message will be displayed: _"The book with index {index} has been successfully removed from the database"_.
 
-Doppelklicken Sie auf ein beliebiges Feld in der Tabelle:
-Um ein Buch zu aktualisieren, einzufügen oder zu entfernen, sollte es zunächst in den Eingabefeldern angezeigt werden, indem man zweimal darauf klickt.
+* __UPDATE__ button:
+	* Each book can be updated by clicking on it twice to display it in the input fields. In case of a successful update, a notification will be displayed.
 
-Löschen eines Buches aus der Datenbank:
-Jedes Buch kann mit Hilfe des "X"-Buttons und des "REMOVE"-Buttons aus der Tabelle entfernt werden, indem man zunächst auf das gewünschte Buch doppelklickt.
-Wenn das Buch erfolgreich entfernt wurde, erhalten Sie die Meldung "Das Buch wurde mit dem gewünschten Index aus der Datenbank gelöscht".
+* __SEARCH__ field:
+	* Search for one or more word combinations by entering the values without commas. These will be displayed in the form of a table. If there are no matches, a notification will be displayed.
 
-"INSERT"-Button (Prüfungen werden durchgeführt):
-   1. alle Eingabefelder sollten ausgefüllt sein:
-Wenn mindestens eines der Eingabefelder nicht ausgefüllt ist, wird eine Fehlermeldung angezeigt, die Sie auffordert, alle Felder auszufüllen. Die Meldung verschwindet nach 5 Sekunden. Die weiteren Prüfungen werden dann nicht durchgeführt.
-
-   2. Jahr und ISBN sind konforme Regelmäßigkeiten:
-Die Fehlermeldungen werden angezeigt und die weiteren Prüfungen werden nicht durchgeführt, unabhängig davon:
-	ob ein oder beide Einträge fehlerhaft sind, 
-	ob nur ein falscher Eintrag korrigiert wurde, unabhängig von der Reihenfolge der durchgeführten Schritte und 
-	ob die gleichen Schritte wiederholt durchgeführt werden.
-
-   3. Es werden keine neuen Bücher doppelt eingefügt:
-Es wird auch geprüft, ob ein Buch bereits in der JSON-Liste vorhanden ist; ist dies der Fall, wird eine Meldung angezeigt: "Das Buch ist bereits Teil der Bibliothek", die nach 5 Sekunden verschwindet. Die anderen Prüfungen werden nicht durchgeführt.
-Wenn das Buch nicht vorkommt, wird es gespeichert. Der Schritt kann mehrmals wiederholt werden => keine doppelten Einträge.
-
-"CLEAR"-Button:
-Die Einträge in den Eingabefeldern werden gelöscht. Wurde ein Buch erfolgreich eingefügt, werden auch die Eingabefelder gelöscht.
-
-"UPDATE"-Button:
-Jedes Buch kann durch zweimaliges Anklicken aktualisiert werden. Alle Prüfungen wie beim Einfügen eines Buches werden ebenfalls durchgeführt. Im Falle einer erfolgreichen Aktualisierung gibt es eine Benachrichtigung.
-
-Feld "SEARCH":
-Suchen Sie nach einer oder mehreren Wortkombinationen ohne Komma-Trennung. Diese werden in Form einer Tabelle angezeigt. Wenn keine Einträge gefunden werden, erhalten Sie ebenfalls eine Benachrichtigung.
-
-Die Benachrichtigung am Ende der Tabelle informiert Sie auch über die Anzahl der Einträge in der Tabelle.
-
-ID:
-Die ID wird automatisch generiert. Sie ist eine Kombination aus 5 Zahlen und/oder Buchstaben. Dabei wird die Basis 36 verwendet. Sie kann aber auch auf eine beliebige Basis geändert werden. Die Länge der ID kann ebenfalls geändert werden.
+* __ID__:
+	* The ID is generated automatically. It is a combination of 5 numbers and/or letters. The base 36 is used for the creation of the IDs. Optionally, the base type and the length of the IDs can be changed.
 
 
-TEXT MINING-SEITE
+### TEXT MINING app
 
-Dokumente:
+#### App components:
+* words.html
+* wordsAsynschron.js
+* a class: modele/TextAnalysis.js
+* a text to upload: 1857-the-willed-child.txt
+* libs/jquery
 
-words.html, wordsAsynschron.js, a class: modele/TextAnalysis.js, a text to upload: 1857-the-willed-child.txt, libs/jquery
+#### Properties
 
-Eigenschaften:
+* __UPLOAD FILE__ button:
+	* It displays the contents of a .txt file in the input field.
 
-"UPLOAD FILE"-Button:
-Sie zeigt den Inhalt einer .txt-Datei im Eingabefeld an.
+* __RESEARCH__ button:
+	* A model with options for the parameters to be considered in the analysis will appear. There are 3 types of analyses to choose from: 
+		1. Token selection only: Only the number of total words in the text should be determined.
+		2. Type selection only: To measure the total number of unique words in the text and determine and display a subset of the most frequent words.
+		3. Selection of both parameters: In addition to the above criteria, the density of words in the text is measured.
 
-"RESEARCH"-Button:
-Es wird ein Modell mit Optionen für Parameter angeboten, die für die Analyse berücksichtigt werden sollen.
-Es stehen 2 Arten der Analyse zur Auswahl und 3 Arten von Ergebnissen, die angezeigt werden können: 
-	1. Nur Token-Auswahl: Es soll nur die Anzahl der Gesamtwörter im Text ermittelt werden.
-	2. Nur Typauswahl: Es soll die Gesamtzahl der eindeutigen Wörter im Text und eine Teilmenge der häufigsten Wörter angezeigt werden.
-	3. Auswahl beider Parameter: Zusätzlich zu den oben genannten Kriterien wird die Dichte der Wörter im Text gemessen.
+* __Stop words__ is the range of the first most frequent words that will be excluded from the analysis.
+* __Most frequent words__ is the range of the most frequent words that the user is interested in. These will be displayed in the __Results__ field.
 
-"Stoppwörter" ist der Bereich der ersten häufigsten Wörter, die aus der Analyse entfernt werden.
-"Häufigste Wörter" ist der Bereich der häufigsten Wörter, die im Feld "Ergebnisse" angezeigt werden.
-
-Die Bereiche "Stoppwörter" und "Häufigste Wörter" sind Prozentsätze der Anzahl der eindeutigen Wörter. 
-Standardmäßig sind "Stoppwörter" die ersten 10 % der Anzahl der eindeutigen Wörter.
-Standardmäßig sind "häufigste Wörter" die ersten 30 % der Anzahl der eindeutigen Wörter, ohne die Stoppwörter.
+	* The __Stop words__ and __Most frequent words__ ranges are percentages of the total number of unique words in the text. 
+	* By default, __Stop Words__ are the first 10% of the number of unique words.
+	* By default, __Most frequent words__ are the first 30% of the number of unique words, excluding the stop words.
